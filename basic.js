@@ -1,0 +1,1 @@
+console.log("Starting a new journey of becoming a Backend Developer.");
