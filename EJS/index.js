@@ -19,6 +19,11 @@ app.get("/about", (req, res) => {
     res.render("about.ejs");
 });
 
+app.get("/rolldice", (req, res) => {
+    let dicValue = Math.floor(Math.random()*6)+1;
+    res.render("rolldice.ejs", {dicValue});
+});
+
 
 // --------------------------------------------------
 // Listen port---
