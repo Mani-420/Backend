@@ -10,5 +10,11 @@
     <h3>This instagram page belongs to: <%= username %></h3>
     <button>Follow</button>
     <button>Message</button>
+    <h4>Followers</h4>
+    <ul>
+        <% for(let name of followers) { %>
+        <li> <%= name %> </li>
+        <% } %>
+    </ul>
 </body>
 </html>
