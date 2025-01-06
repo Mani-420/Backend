@@ -38,17 +38,28 @@
 // console.log(p2.talk())
 
 
-// Classes -----------------------------------
+// Classes and Inheritance -----------------------------------
 class Person{
     constructor(name, age){
         this.name = name;
         this.age = age;
     }
     talk(){
-        console.log(`My name is ${this.name}`);
+        console.log(`My name is ${this.name}.\nMy age is ${this.age}.`);
+    }
+}
+
+class Student extends Person{
+    constructor(name, age, marks){
+        super(name, age);
+        this.marks = marks;
+    }
+
+    greet(){
+        return "Hello";
     }
 }
 
 let p1 = new Person("Mani", 23);
-let p2 = new Person("Gambler", 22);
-console.log(p1.talk());
+let s1 = new Student("Mithu", 25, 95);
+console.log(s1.talk());
