@@ -11,8 +11,11 @@
     <% for(post of posts) { %>
     <div class="post">
         <h3 class="user">@<%= post.username %></h3>
-        <p class="content"><%= post.username %></p>
+        <p class="content"><%= post.content %></p>
     </div>
     <% } %>
+
+    <br> <br>
+    <a href="http://localhost:8080/posts/new">Create New Post</a>
 </body>
 </html>
