@@ -13,14 +13,17 @@ app.use(express.static(path.join(__dirname, "public")));
 // Data for posts
 let posts = [
     {
+        id: "1a",
         username: "Mani",
         content: "I am a Fullstack developer",
     },
     {
+        id: "2a",
         username: "Hamza Habib",
         content: "I am a Machine Learner",
     },
     {
+        id: "3a",
         username: "Farhan Khalid", 
         content: "I am a expert backend developer",
     }
@@ -32,6 +35,10 @@ app.get("/posts", (req, res) => {
 });
 
 app.get("/posts/new", (req, res) => {
+    res.render("new.ejs");
+});
+
+app.get("/posts/:id", (req, res) => {
     res.render("new.ejs");
 });
 
