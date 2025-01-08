@@ -39,7 +39,9 @@ app.get("/posts/new", (req, res) => {
 });
 
 app.get("/posts/:id", (req, res) => {
-    res.render("new.ejs");
+    let {id} = req.params;
+    let post = posts.find( (p) => id === p.id);
+    res.render("show.ejs", {post});
 });
 
 app.post("/posts", (req, res) => {

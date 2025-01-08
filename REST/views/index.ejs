@@ -11,7 +11,8 @@
     <% for(post of posts) { %>
     <div class="post">
         <h3 class="user">@<%= post.username %></h3>
-        <p class="content"><%= post.content %></p>
+        <p class="content"><%= post.content %></p> <br>
+        <a href="http://localhost:8080/posts/<%= post.id %>">See in Detail</a>
     </div>
     <% } %>
 
