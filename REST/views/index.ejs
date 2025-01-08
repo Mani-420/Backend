@@ -13,7 +13,10 @@
         <h3 class="user">@<%= post.username %></h3>
         <p class="content"><%= post.content %></p> <br>
         <a href="http://localhost:8080/posts/<%= post.id %>">See in Detail</a> &nbsp; &nbsp; &nbsp;
-        <a href="http://localhost:8080/posts/<%= post.id %>/edit">Edit your post</a>
+        <a href="http://localhost:8080/posts/<%= post.id %>/edit">Edit your post</a> <br><br>
+        <form method="post" action="/posts/<%= post.id %>?_method=DELETE">
+            <button>Delete Button</button>
+        </form>
     </div>
     <% } %>
 
