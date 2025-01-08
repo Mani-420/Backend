@@ -54,13 +54,19 @@ app.post("/posts", (req, res) => {
     res.redirect("/posts");
 });
 
-// Update Request
+// Update Route
 app.patch("/posts/:id", (req, res) => {
     let {id} = req.params;
     let newContent = req.body.content;
     let post = posts.find( (p) => id === p.id);
     post.content = newContent;
-    console.log(post);
+    res.redirect("/posts");
+});
+
+// Delete Route
+app.delete("/posts/:id", (req, res) => {
+    let {id} = req.params;
+    posts = posts.filter( (p) => id !== p.id);
     res.redirect("/posts");
 });
 
