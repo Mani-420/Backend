@@ -52,6 +52,15 @@ app.post("/posts", (req, res) => {
     res.redirect("/posts");
 });
 
+// Update Request
+app.patch("/posts/:id", (req, res) => {
+    let {id} = req.params;
+    let newContent = req.params.content;
+    let post = posts.find( (p) => id === p.id);
+    post.content = newContent;
+    res.render("show.ejs", {post});
+});
+
 // Listener
 app.listen(PORT, () => {
     console.log(`App listening to PORT: ${PORT}`);
