@@ -1,4 +1,4 @@
-const { faker } = require('@faker-js/faker');
+const { faker } = require ('@faker-js/faker');
 const mysql = require('mysql2');
 
 // Create the connection to database
@@ -29,4 +29,4 @@ let getRandomUser = () => {
   };
 };
 
-console.log(getRandomUser());
+// console.log(getRandomUser());
