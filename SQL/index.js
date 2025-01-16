@@ -1,11 +1,14 @@
-const { faker } = require ('@faker-js/faker');
+const { faker, tr } = require ('@faker-js/faker');
 const mysql = require('mysql2');
 const express= require("express");
 const app = express();
 const PORT = 8080;
 const path = require("path");
 const { render } = require('ejs');
+const methodOverride = require("method-override");
 
+app.use(methodOverride("_method"));
+app.use(express.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
@@ -91,7 +94,13 @@ app.get("/user/:id/edit", (req, res) => {
     console.log(err);
     res.send("Some error in database");
   }
-})
+});
+
+// GET/user/:id/edit Route---------------------------
+app.patch("/user/:id", (req, res) => {
+
+});
+
 
 // Port Listener---------------------------
 app.listen(PORT, () => {
