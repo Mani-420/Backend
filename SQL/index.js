@@ -44,7 +44,17 @@ let getRandomUser = () => {
 // Home Page Route---------------------------
 
 app.get("/", (req, res) => {
-  res.send("Welcome to home page");
+  let q = "SELECT count(*) from practice";
+  try{
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      console.log(result[0]["count(*)"]);
+      res.send(result[0]);
+    });
+  } catch(err){
+    console.log(err);
+    res.send("Some error in database");
+  }
 });
 
 
