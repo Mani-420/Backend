@@ -4,6 +4,7 @@ const express= require("express");
 const app = express();
 const PORT = 8080;
 const path = require("path");
+const { render } = require('ejs');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
@@ -76,6 +77,21 @@ app.get("/user", (req, res) => {
   }
 });
 
+// GET/user/:id/edit Route---------------------------
+app.get("/user/:id/edit", (req, res) => {
+  let {id} = req.params;
+  let q = `SELECT * FROM practice WHERE id='${id}'`;
+  try{
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      let user = result[0];
+      res.render("edit_user.ejs", {user});
+    });
+  } catch(err){
+    console.log(err);
+    res.send("Some error in database");
+  }
+})
 
 // Port Listener---------------------------
 app.listen(PORT, () => {
