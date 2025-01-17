@@ -11,6 +11,10 @@
     </style>
 </head>
 <body>
+    <form method="GET" action="/user/new">
+        <button>Add New User</button>
+    </form>
+    
     <h2>Users Information:</h2>
     <table>
         <tr>
@@ -28,6 +32,11 @@
                     <button>Edit User</button>
                     </form>
                 </td>
+                <td>
+                    <form method="get" action="/user/<%=user.id%>/delete">
+                      <button>Delete</button>
+                    </form>
+                  </td>
             </tr>
         <% } %>
     </table>
