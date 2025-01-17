@@ -6,6 +6,7 @@ const PORT = 8080;
 const path = require("path");
 const { render } = require('ejs');
 const methodOverride = require("method-override");
+const { v4: uuidv4 } = require("uuid");
 
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({extended: true}));
@@ -118,6 +119,27 @@ app.patch("/user/:id", (req, res) => {
     });
   } catch(err){
     console.log(err);
+    res.send("Some error in database");
+  }
+});
+
+// POST Request (/user/new) Route---------------------------
+app.get("/user/new", (req, res) => {
+  res.render("new.ejs");
+});
+
+app.post("/user/new", (req, res) => {
+  let { username, email, password } = req.body;
+  let id = uuidv4();
+  //Query to Insert New User
+  let q = `INSERT INTO practice (id, username, email, password) VALUES ('${id}','${username}','${email}','${password}') `;
+  try {
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      console.log("added new user");
+      res.redirect("/user");
+    });
+  } catch (err) {
     res.send("Some error in database");
   }
 });
