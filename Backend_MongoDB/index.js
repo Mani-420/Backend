@@ -41,12 +41,35 @@ const User = mongoose.model("User", userSchema);
 // -------------------------------------------------------------
 
 // Inserting data into data bases Many Users--------------------
-User.insertMany([
-    {name: "Mithu", email: "mani@gmail.com", age: 23},
-    {name: "Farhan", email: "farhan@gmail.com", age: 21},
-    {name: "Prince", email: "prince@gmail.com", age: 20},
-]).then(res => {console.log(res)})
-.catch(err => {console.log(err)});
+// User.insertMany([
+//     {name: "Mithu", email: "mani@gmail.com", age: 23},
+//     {name: "Farhan", email: "farhan@gmail.com", age: 21},
+//     {name: "Prince", email: "prince@gmail.com", age: 20},
+// ]).then(res => {console.log(res)})
+// .catch(err => {console.log(err)});
 
+// -------------------------------------------------------------
+
+// -------------------------------------------------------------
+
+// Finding user from data bases---------------------------------
+// User.find({})
+// .then(res => {console.log(res)})
+// .catch(err => {console.log(err)});
+
+// User.find({age: {$gt: 21}})
+// .then(res => {console.log(res)})
+// .catch(err => {console.log(err)});
+
+// -------------------------------------------------------------
+
+// Updating user from data bases--------------------------------
+// User.updateOne({name: "Mithu"}, {age: 24})
+// .then(res => {console.log(res)})
+// .catch(err => {console.log(err)});
+
+User.updateMany({age: {$gt: 21}}, {age: 25})
+.then(res => {console.log(res)})
+.catch(err => {console.log(err)});
 
 // -------------------------------------------------------------
