@@ -22,6 +22,7 @@ const bookSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
+        min: [15, "Price is too low for amazon."]
     },
 });
 
