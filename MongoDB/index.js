@@ -20,24 +20,14 @@ async function main() {
     await mongoose.connect("mongodb://127.0.0.1:27017/whatsapp");
 }
 
-// Inserting data into data bases one by one--------------------
-const chat1 = new User({
-    sentFrom: "Mani",
-    sentTo: "Hamza",
-    message: "Hello dear! How are you.",
-    createdAt: new Date(),
-});
-chat1.save()
-.then(res => {console.log(res)})
-.catch(err => {console.log(err)});
-// -------------------------------------------------------------
+const currUser = "Abdul Rehman";
+const currReciever = "Tahir Mehmood";
 
+// Index Route 
 
-const currUser = "Pulkit";
-const currReciever = "Elon Musk";
-
-app.get("/", async (req, res) => {
-  res.render("index",{messages: await Chat.find({}),user:currUser});
+app.get("/chats", async (req, res) => {
+    let chats = await Chat.find();
+    res.render("index.ejs",{chats});
 });
 
 app.patch("/messages", async (req, res) => {
