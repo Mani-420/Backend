@@ -37,42 +37,51 @@ app.get("/chats/new", (req, res) => {
 });
 // ------------------------------------------------
 
+// New Route ------------------------------------------------
+app.post("/chats", (req, res) => {
+    let {sentFrom, sentTo, message} = req.body;
+    let newChat = new Chat({
+        sentFrom: sentFrom,
+        sentTo: sentTo,
+        message: message,
+        createdAt: new Date() 
+    });
+    newChat.save()
+    .then(res => {console.log("Chat was saved")})
+    .catch(err => {console.log(err)});
+    res.redirect("/chats");
+});
 
-// app.patch("/messages", async (req, res) => {
-//   await new Chat({
-//     sentFrom: req.body.sentFrom,
-//     sentTo: req.body.sentTo,
-//     message:req.body.message,
-//     createdAt:Date.now()
-//   }).save()
-//   res.redirect("/")
-// });
+// Edit Route ------------------------------------------------
+app.get("/chats/:id/edit", async (req, res) => {
+    let {id}= req.params;
+    let chat = await Chat.findById(id);
+    res.render("edit.ejs", {chat});
+});
 
-// app.get("/message/edit", async (req, res) => {
-//   const chatObj = await Chat.findById(req.params.id);
-//   console.log(chatObj);
-//   res.render("index",{messages: await Chat.find({}),user:currUser});
-// });
-
-// app.get("/message/:id/edit", async (req, res) => {
-//   Chat.findById(req.params.id).then(msg=>{
-//     res.render("message",{msg,user:currUser})
-//   });
-// });
-
-// app.patch("/message/:id", async (req, res) => {
-//   Chat.findByIdAndUpdate((req.params.id),{message:req.body.msg},{new:true}).then(()=>{
-//     res.redirect("/")
-//   })
-// });
-
-// app.delete("/message/:id", async (req, res) => {
-//   Chat.findByIdAndDelete(req.params.id).then(res=>{
-//     console.log(res);
-//   })
-//   res.redirect("/")
-// });
+app.put("/chats/:id", async (req, res) => {
+    let {id} = req.params;
+    let {message: newMsg} = req.body;
+    let updatedChat = await Chat.findByIdAndUpdate(
+        id,
+        {message: newMsg},
+        {runValidators: true, new: true});
+        res.redirect("/chats")
+    });
+    // ----------------------------------------------------------
+    
+app.get("/", (req, res) => {
+    res.send("This is home page. Type /chats to read chats");
+});
+// ----------------------------------------------------------
+    
+// Delete Route ------------------------------------------------
+app.delete("/chats/:id", async (req, res) => {
+    let {id} = req.params;
+    let deletedChat = await Chat.findByIdAndDelete(id);
+    res.redirect("/chats");
+});
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
 });
