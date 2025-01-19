@@ -31,6 +31,13 @@ app.get("/chats", async (req, res) => {
 });
 // ------------------------------------------------
 
+// New Route ------------------------------------------------
+app.get("/chats/new", (req, res) => {
+    res.render("new.ejs");
+});
+// ------------------------------------------------
+
+
 // app.patch("/messages", async (req, res) => {
 //   await new Chat({
 //     sentFrom: req.body.sentFrom,
