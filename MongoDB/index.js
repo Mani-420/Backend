@@ -35,7 +35,7 @@ app.patch("/messages", async (req, res) => {
     sentFrom: req.body.sentFrom,
     sentTo: req.body.sentTo,
     message:req.body.message,
-    instance:Date.now()
+    createdAt:Date.now()
   }).save()
   res.redirect("/")
 });
