@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Blog</title>
+    <style>
+/* General reset for consistent styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container styling */
+        body > ul {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            list-style: none;
+        }
+
+        /* Heading styling */
+        h3 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        /* Recipe Image Styling */
+        ul img {
+            display: block;
+            width: 100%;
+            max-height: 300px; /* Limit the height of the image */
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        /* Recipe Details Styling */
+        ul li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f4f4f4;
+            border-left: 4px solid #ffa726;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Link Styling */
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #42a5f5;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #1e88e5;
+        }
+
+        /* Button Styling */
+        form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ef5350;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #e53935;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body > ul {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            a, form button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <h3>Recipe Details :</h3>
+    <ul>
+    <img src="<%= recipes.image %>" alt="an image">
+      <li><b>Title</b> <%= recipes.title %></li>
+      <li><b>Description</b> <%= recipes.description %></li>
+      <li><b>Ingredients</b> <%= recipes.ingredients %></li>
+      <li><b>Recipe</b> <%= recipes.recipe %></li>
+    </ul>
+    <br />
+    <a href="/recipes/<%= recipes._id %>/edit">Edit this recipe</a>
+    <br /><br />
+    <form method="POST" action="/recipes/<%=recipes._id%>?_method=DELETE">
+      <button>Delete this recipe</button>
+    </form>
+</body>
+</html>

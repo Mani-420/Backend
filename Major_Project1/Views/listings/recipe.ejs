@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Blog</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <h3>All Recipes</h3>
-    <ul>
+    <div class="recipe-container">
         <% for(let recipe of allRecipes) { %>
-            <li><a href="/listings/<%= recipe._id %>"> <%= recipe.title %> </a></li>
-            <!-- <li><a href="/listings/<%= recipe._id %>"> <%= recipe.description %> </a></li> -->
+            <div class="recipe-card">
+                <img class="recipe" src="<%= recipe.image %>" alt="<%= recipe.title %>">
+                <a class="recipe" href="/recipes/<%= recipe._id %>"> <%= recipe.title %> </a>
+            </div>
         <% } %>
-    </ul>
+    </div>
 
     <form method="GET" action="/recipes/new">
         <button>Create New Recipe</button>
