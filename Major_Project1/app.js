@@ -23,25 +23,28 @@ async function main() {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-app.get("/", (req, res) => {
-  res.send(`Hi, I am Home Page.`);
+
+// Home Route
+app.get("/Home", (req, res) => {
+  res.render("listings/home.ejs");
 });
 
-//Index Route
-// app.get("/listings", async (req, res) => {
-//   const allListings = await Listing.find({});
-//   res.render("listings/index.ejs", { allListings });
-// });
+// All Recipes Route
+app.get("/allrecipes", async (req, res) => {
+  const allRecipes = await Listing.find({});
+  res.render("listings/recipe.ejs", { allRecipes });
+});
 
 // //New Route
-// app.get("/listings/new", (req, res) => {
-//   res.render("listings/new.ejs");
-// });
+app.get("/recipe/new", (req, res) => {
+  res.render("listings/new.ejs");
+});
 
 // //Show Route
-// app.get("/listings/:id", async (req, res) => {
+// app.get("/re/:id", async (req, res) => {
 //   let { id } = req.params;
 //   const listing = await Listing.findById(id);
 //   res.render("listings/show.ejs", { listing });
