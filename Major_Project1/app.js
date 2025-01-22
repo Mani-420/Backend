@@ -33,65 +33,53 @@ app.get("/Home", (req, res) => {
 });
 
 // All Recipes Route
-app.get("/allrecipes", async (req, res) => {
+app.get("/recipes", async (req, res) => {
   const allRecipes = await Listing.find({});
   res.render("listings/recipe.ejs", { allRecipes });
 });
 
-// //New Route
-app.get("/recipe/new", (req, res) => {
-  res.render("listings/new.ejs");
+
+//Create Route
+app.post("/recipes", async (req, res) => {
+  const newListing = new Listing(req.body.listing);
+  await newListing.save()
+  .catch((err) => console.log(err));
+  res.redirect("/recipes");
 });
 
 // //Show Route
-// app.get("/re/:id", async (req, res) => {
-//   let { id } = req.params;
-//   const listing = await Listing.findById(id);
-//   res.render("listings/show.ejs", { listing });
-// });
+app.get("/recipes/:id", async (req, res) => {
+  let { id } = req.params;
+  const recipes = await Listing.findById(id);
+  res.render("listings/show.ejs", { recipes });
+});
 
-// //Create Route
-// app.post("/listings", async (req, res) => {
-//   const newListing = new Listing(req.body.listing);
-//   await newListing.save();
-//   res.redirect("/listings");
-// });
+//New Route
+app.get("/recipes/new", (req, res) => {
+  res.render("listings/new.ejs");
+});
 
-// //Edit Route
-// app.get("/listings/:id/edit", async (req, res) => {
-//   let { id } = req.params;
-//   const listing = await Listing.findById(id);
-//   res.render("listings/edit.ejs", { listing });
-// });
+//Edit Route
+app.get("/recipes/:id/edit", async (req, res) => {
+  let { id } = req.params;
+  const recipe = await Listing.findById(id);
+  res.render("listings/edit.ejs", { recipe });
+});
 
-// //Update Route
-// app.put("/listings/:id", async (req, res) => {
-//   let { id } = req.params;
-//   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-//   res.redirect(`/listings/${id}`);
-// });
+//Update Route
+app.put("/recipes/:id", async (req, res) => {
+  let { id } = req.params;
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  res.redirect(`/recipes/${id}`);
+});
 
-// //Delete Route
-// app.delete("/listings/:id", async (req, res) => {
-//   let { id } = req.params;
-//   let deletedListing = await Listing.findByIdAndDelete(id);
-//   console.log(deletedListing);
-//   res.redirect("/listings");
-// });
+//Delete Route
+app.delete("/recipes/:id", async (req, res) => {
+  let { id } = req.params;
+  let deletedListing = await Listing.findByIdAndDelete(id);
+  res.redirect("/recipes");
+});
 
-// app.get("/testListing", async (req, res) => {
-//   let sampleListing = new Listing({
-//     title: "My New Villa",
-//     description: "By the beach",
-//     price: 1200,
-//     location: "Calangute, Goa",
-//     country: "India",
-//   });
-
-//   await sampleListing.save();
-//   console.log("sample was saved");
-//   res.send("successful testing");
-// });
 
 app.listen(PORT, () => {
   console.log(`Server is listening at port" ${PORT}`);
