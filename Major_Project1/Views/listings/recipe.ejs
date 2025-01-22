@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Blog</title>
+</head>
+<body>
+    <h3>All Recipes</h3>
+    <ul>
+        <% for(let recipe of allRecipes) { %>
+            <li><a href="/listings/<%= recipe._id %>"> <%= recipe.title %> </a></li>
+            <!-- <li><a href="/listings/<%= recipe._id %>"> <%= recipe.description %> </a></li> -->
+        <% } %>
+    </ul>
+
+    <form method="GET" action="/recipes/new">
+        <button>Create New Recipe</button>
+    </form>
+</body>
+</html>
