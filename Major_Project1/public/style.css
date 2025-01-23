@@ -38,6 +38,10 @@ header {
     margin-bottom: 0.5rem;
 }
 
+.content{
+    margin-top: 50px;
+}
+
 .intro p {
     font-size: 1.2rem;
     color: #555;
@@ -124,7 +128,21 @@ h3 {
     justify-self: center;
     justify-items: center;
     border-radius: 15px;
-    background-color: lightslategrey;
+    background-color: lightgray;
     margin: 15px;
-    color: white;
+    padding: 6px;
+    color: black;
+}
+
+.buttons :hover{
+    background-color: black;
+    color: #ddd;
+}
+
+.pages{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
 }
