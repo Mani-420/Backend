@@ -4,6 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipe Blog</title>
+  <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      input[type="text"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+      textarea {
+        resize: vertical;
+      }
+      button {
+        background-color: #007BFF;
+        color: #ffffff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+  </style>
 </head>
 <body>
   <form method="post" action="/recipes">
