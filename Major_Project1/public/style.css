@@ -117,3 +117,14 @@ h3 {
     background-color: #0056b3;
 }
 
+.buttons{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    border-radius: 15px;
+    background-color: lightslategrey;
+    margin: 15px;
+    color: white;
+}
