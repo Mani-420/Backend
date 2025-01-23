@@ -8,6 +8,14 @@
 </head>
 <body>
     <h3>All Recipes</h3>
+    <div class="pages">
+        <form method="GET" action="/recipes/new">
+            <button class="buttons">Create New Recipe</button>
+        </form>
+        <form action="/home">
+            <button class="buttons">Home</button>
+        </form>
+    </div>
     <div class="recipe-container">
         <% for(let recipe of allRecipes) { %>
             <div class="recipe-card">
@@ -16,9 +24,5 @@
             </div>
         <% } %>
     </div>
-
-    <form method="GET" action="/recipes/new">
-        <button>Create New Recipe</button>
-    </form>
 </body>
 </html>
