@@ -39,10 +39,15 @@ app.get("/recipes", async (req, res) => {
 });
 
 
+//New Route
+app.get("/recipes/new", (req, res) => {
+  res.render("listings/new.ejs");
+});
+
 //Create Route
 app.post("/recipes", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing.save()
+  const newRecipe = new Listing(req.body.listing);
+  await newRecipe.save()
   .catch((err) => console.log(err));
   res.redirect("/recipes");
 });
@@ -54,10 +59,6 @@ app.get("/recipes/:id", async (req, res) => {
   res.render("listings/show.ejs", { recipes });
 });
 
-//New Route
-app.get("/recipes/new", (req, res) => {
-  res.render("listings/new.ejs");
-});
 
 //Edit Route
 app.get("/recipes/:id/edit", async (req, res) => {
