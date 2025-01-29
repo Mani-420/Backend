@@ -28,7 +28,7 @@ app.use(methodOverride("_method"));
 
 
 // Home Route
-app.get("/Home", (req, res) => {
+app.get("/home", (req, res) => {
   res.render("listings/home.ejs");
 });
 
