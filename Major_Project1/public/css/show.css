@@ -1,10 +1,25 @@
-body {
+.container{
+    justify-content: center;
+    justify-items: center;
+}
+
+.buttons{
+    display: flex;
+    margin: 5px;
+    color: #f4f4f4;
+}
+
+.main {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 10px;
     padding: 0;
     background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+    /* color: #333; */
+    line-height: 1.6;   
+    justify-content: center;
+    justify-items: center;
+    align-items: center; 
+    max-width: 50%;
 }
 
 /* Container styling */

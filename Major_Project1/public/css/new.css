@@ -1,21 +1,26 @@
 /* General Reset */
-body {
+
+.main {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 10px;
     background-color: #f9f9f9;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
+}
+
+h4{
+    justify-self: center;
 }
 
 /* Form Container */
 form {
     max-width: 600px;
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -26,7 +31,7 @@ form {
 input[type="text"], textarea {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
+    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
