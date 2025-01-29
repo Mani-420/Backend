@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 
+// Routes------------------------------------------------
 // Home Route
 app.get("/home", (req, res) => {
   res.render("listings/home.ejs");
