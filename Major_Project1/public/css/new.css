@@ -60,6 +60,23 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Footer */
+.socials a {
+    text-decoration: none;
+    color: #222222;
+    font-size: 1.5rem;
+}
+
+.socials a:hover {
+    text-decoration: underline;    
+}
+.footer-info{
+    height: 2.5rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
