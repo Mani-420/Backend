@@ -10,23 +10,26 @@
   </head>
   <body>
     <%- include('../includes/navbar.ejs') %>
-    <h3>Edit your Listing</h3>
-    <form method="POST" action="/recipes/<%= recipe._id %>?_method=PUT">
-      <input name="listing[title]" value="<%= recipe.title %>" type="text" />
-      <br /><br />
-      <textarea name="listing[description]">
-        <%= recipe.description %></textarea>
-      <br /><br />
-      <input name="listing[image]" value="<%= recipe.image %>" type="text" />
-      <br /><br />
-      <textarea rows="8" cols="25" name="listing[ingredients]">
-        <%= recipe.ingredients %></textarea>
-      <br /><br />
-      <textarea rows="8" cols="25" name="listing[recipe]">
-        <%= recipe.recipe %></textarea>
-      <br /><br />
-      <button>Edit</button>
-    </form>
+    <div class="main">
+      <h3>Edit your Listing</h3>
+      <form method="POST" action="/recipes/<%= recipe._id %>?_method=PUT">
+        <input name="listing[title]" value="<%= recipe.title %>" type="text" />
+        <br /><br />
+        <textarea name="listing[description]">
+          <%= recipe.description %></textarea>
+        <br /><br />
+        <input name="listing[image]" value="<%= recipe.image %>" type="text" />
+        <br /><br />
+        <textarea rows="8" cols="25" name="listing[ingredients]">
+          <%= recipe.ingredients %></textarea>
+        <br /><br />
+        <textarea rows="8" cols="25" name="listing[recipe]">
+          <%= recipe.recipe %></textarea>
+        <br /><br />
+        <button>Edit</button>
+      </form>
+    </div>
+    <%- include('../includes/footer.ejs') %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

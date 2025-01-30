@@ -24,14 +24,16 @@
         </ul>
         <br />
         <div class="buttons">
-          <a style="color: white;" href="/recipes/<%= recipes._id %>/edit">Edit this recipe</a>
-          <br /><br />
+          <button style="cursor: pointer; text-decoration:none; background-color: rgb(19, 174, 235); margin-right: 5px;">
+            <a style="text-decoration: none; color:white;" href="/recipes/<%= recipes._id %>/edit">Edit this recipe</a>
+          </button>
           <form method="POST" action="/recipes/<%=recipes._id%>?_method=DELETE">
-            <button>Delete this recipe</button>
+            <button style="cursor: pointer; text-decoration:none; background-color: red; color:white; margin-left: 5px;">Delete this recipe</button>
           </form>
         </div>
       </div>
     </div>
+    <%- include('../includes/footer.ejs') %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
