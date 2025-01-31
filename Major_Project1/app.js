@@ -5,6 +5,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const PORT = 8080;
 const Listing = require("./models/listing.js");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/Recipe-blog";
 
@@ -34,10 +36,10 @@ app.get("/home", (req, res) => {
 });
 
 // All Recipes Route
-app.get("/recipes", async (req, res) => {
+app.get("/recipes", wrapAsync (async (req, res) => {
   const allRecipes = await Listing.find({});
   res.render("listings/recipe.ejs", { allRecipes });
-});
+}));
 
 
 //New Route
@@ -46,41 +48,58 @@ app.get("/recipes/new", (req, res) => {
 });
 
 //Create Route
-app.post("/recipes", async (req, res) => {
+app.post("/recipes", wrapAsync (async (req, res) => {
+  if (!req.body.listing){
+    throw new ExpressError(400, "Please fill out all fields");
+  }
   const newRecipe = new Listing(req.body.listing);
   await newRecipe.save()
   .catch((err) => console.log(err));
   res.redirect("/recipes");
-});
+}));
 
 // //Show Route
-app.get("/recipes/:id", async (req, res) => {
+app.get("/recipes/:id", wrapAsync (async (req, res) => {
   let { id } = req.params;
   const recipes = await Listing.findById(id);
   res.render("listings/show.ejs", { recipes });
-});
+}));
 
 
 //Edit Route
-app.get("/recipes/:id/edit", async (req, res) => {
+app.get("/recipes/:id/edit", wrapAsync (async (req, res) => {
   let { id } = req.params;
   const recipe = await Listing.findById(id);
   res.render("listings/edit.ejs", { recipe });
-});
+}));
 
 //Update Route
-app.put("/recipes/:id", async (req, res) => {
+app.put("/recipes/:id", wrapAsync (async (req, res) => {
+  if (!req.body.listing){
+    throw new ExpressError(400, "Please fill out all fields");
+  }
   let { id } = req.params;
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   res.redirect(`/recipes/${id}`);
-});
+}));
 
 //Delete Route
-app.delete("/recipes/:id", async (req, res) => {
+app.delete("/recipes/:id", wrapAsync (async (req, res) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
   res.redirect("/recipes");
+}));
+
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "Page not found"));
 });
+
+
+// MiddleWares 
+app.use((err, req, res, next) => {
+  let {statusCode=500, message="Something went wrong"} = err;
+  res.status(statusCode).send(message);
+})
 
 
 app.listen(PORT, () => {
