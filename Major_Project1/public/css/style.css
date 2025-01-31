@@ -73,10 +73,14 @@ section {
     text-decoration: underline;    
 }
 .footer-info{
-    height: 2.5rem;
     background-color: aliceblue;
     display: flex;
+    margin: 0;
     justify-content: space-between;
+}
+.extra{
+    height: 90%;
+    flex: 1;
 }
 
 
