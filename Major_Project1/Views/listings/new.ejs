@@ -13,37 +13,74 @@
   <%- include('../includes/navbar.ejs') %>
   <h4>Add details for the new recipe:</h4>
   <div class="main">
-    <form method="post" action="/recipes">
-      <input name="listing[title]" placeholder="enter title" type="text" />
-      <br/> <br/>
-      <textarea
-          name="listing[description]"
-          placeholder="enter description"
+    <form method="post" action="/recipes" novalidate class="needs-validation">
+      <div class="title">
+        <input name="listing[title]" placeholder="enter title" type="text" required />
+        <div class="valid-feedback">
+          Title Looks good!
+        </div>
+      </div>
+      
+      <div class="description">
+        <textarea
+            name="listing[description]"
+            placeholder="enter description"
+            rows="3" cols="20"
+            required
+        ></textarea>
+        <div class="valid-feedback">
+          Description Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Description cannot be empty!
+        </div>
+      </div>
+      
+      <div class="image">
+        <input
+          name="listing[image]"
+          placeholder="enter image URL/Link"
+          type="text"
+        />
+        <div class="valid-feedback">
+          Image Looks good!
+        </div>
+      </div>
+
+      <div class="ingredients">
+        <textarea
+          name="listing[ingredients]"
+          placeholder="enter basic ingredients"
           rows="3" cols="20"
-      ></textarea>
-      <br /><br />
-      <input
-        name="listing[image]"
-        placeholder="enter image URL/Link"
-        type="text"
-      />
-      <br /><br />
-      <textarea
-        name="listing[ingredients]"
-        placeholder="enter basic ingredients"
-        rows="3" cols="20"
-      ></textarea>
-      <br /><br />
-      <textarea
-        name="listing[recipe]"
-        placeholder="enter your recipe"
-        rows="3" cols="20"
-      ></textarea>
-      <br /><br />
+          required
+        ></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Ingredients cannot be empty!
+        </div>
+      </div>
+
+      <div class="recipe">
+        <textarea
+          name="listing[recipe]"
+          placeholder="enter your recipe"
+          rows="3" cols="20"
+          required
+        ></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Recipe cannot be empty!
+        </div>
+      </div>
       <button>Submit</button>
     </form>
   </div>
   <%- include('../includes/footer.ejs') %>
+  <script src="/js/validation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
