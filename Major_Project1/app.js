@@ -9,6 +9,7 @@ const Review = require("./models/reviews.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema} = require("./schema.js");
+const {reviewSchema} = require("./schema.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/Recipe-blog";
 
@@ -30,11 +31,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-// validate Schema
+// validate Listing Schema
 const validateListing = (req, res, next) => {
   let {error} = listingSchema.validate(req.body);
   if (error) {
-    let {errMsg} = error.details.map((element) => element.message).join(",");
+    let errMsg = error.details.map((element) => element.message).join(",");
+  }
+  if (error) {
+    throw new ExpressError(400, errMsg);
+  } else{
+    next();
+  }
+};
+
+// validate Review
+const validateReview = (req, res, next) => {
+  let {error} = reviewSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((element) => element.message).join(",");
   }
   if (error) {
     throw new ExpressError(400, errMsg);
@@ -101,7 +115,7 @@ app.delete("/recipes/:id", wrapAsync (async (req, res) => {
 
 // Review 
 // POST Route 
-app.post("/recipes/:id/reviews", wrapAsync (async (req, res) => {
+app.post("/recipes/:id/reviews", validateReview, wrapAsync (async (req, res) => {
   let listing = await Listing.findById(req.params.id);
   let newReview = new Review(req.body.review);
   listing.reviews.push(newReview);
