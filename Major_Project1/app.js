@@ -5,6 +5,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const PORT = 8080;
 const Listing = require("./models/listing.js");
+const Review = require("./models/reviews.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema} = require("./schema.js");
@@ -96,6 +97,19 @@ app.delete("/recipes/:id", wrapAsync (async (req, res) => {
   let deletedListing = await Listing.findByIdAndDelete(id);
   res.redirect("/recipes");
 }));
+
+
+// Review 
+// POST Route 
+app.post("/recipes/:id/reviews", wrapAsync (async (req, res) => {
+  let listing = await Listing.findById(req.params.id);
+  let newReview = new Review(req.body.review);
+  listing.reviews.push(newReview);
+  await newReview.save();
+  await listing.save();
+  res.redirect(`/recipes/${listing.id}`);
+}));
+
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page not found"));
