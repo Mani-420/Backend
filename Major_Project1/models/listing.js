@@ -18,6 +18,11 @@ const listingSchema = new Schema({
   },
   ingredients: String,
   recipe: String,
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+    }
+  ]
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
