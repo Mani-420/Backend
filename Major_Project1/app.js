@@ -86,7 +86,7 @@ app.post("/recipes", validateListing, wrapAsync (async (req, res) => {
 // //Show Route
 app.get("/recipes/:id", wrapAsync (async (req, res) => {
   let { id } = req.params;
-  const recipes = await Listing.findById(id);
+  const recipes = await Listing.findById(id).populate("reviews");
   res.render("listings/show.ejs", { recipes });
 }));
 
@@ -114,7 +114,7 @@ app.delete("/recipes/:id", wrapAsync (async (req, res) => {
 
 
 // Review 
-// POST Route 
+// POST Reviews Route 
 app.post("/recipes/:id/reviews", validateReview, wrapAsync (async (req, res) => {
   let listing = await Listing.findById(req.params.id);
   let newReview = new Review(req.body.review);
@@ -122,6 +122,15 @@ app.post("/recipes/:id/reviews", validateReview, wrapAsync (async (req, res) => 
   await newReview.save();
   await listing.save();
   res.redirect(`/recipes/${listing.id}`);
+}));
+
+// Delete Reviews Route 
+app.delete("/recipes/:id/reviews/:reviewId", wrapAsync (async (req, res) => {
+  let {id, reviewId} = req.params;
+  await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewID}});
+  let deletedId = await Review.findByIdAndDelete(reviewID);
+  console.log(deletedId);
+  res.redirect(`/recipes/${id}`);
 }));
 
 
