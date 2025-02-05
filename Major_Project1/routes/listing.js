@@ -39,6 +39,7 @@ router.post(
   wrapAsync(async (req, res) => {
     const newRecipe = new Listing(req.body.listing);
     await newRecipe.save().catch((err) => console.log(err));
+    req.flash('success', 'Recipe created successfully');
     res.redirect('/recipes');
   })
 );
