@@ -51,6 +51,7 @@ app.use(session(sessionOptions));
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
   next();
 });
 
@@ -65,7 +66,6 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = 'Something went wrong' } = err;
   res.render('error.ejs', { msg: message });
-  // res.status(statusCode).send(message);
 });
 
 app.listen(PORT, () => {
