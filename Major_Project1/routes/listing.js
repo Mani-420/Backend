@@ -44,22 +44,30 @@ router.post(
   })
 );
 
-// //Show Route
+// Show Route
 router.get(
   '/:id',
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const recipes = await Listing.findById(id).populate('reviews');
+    if (!recipes) {
+      req.flash('error', 'Recipe not found');
+      res.redirect('/recipes');
+    }
     res.render('listings/show.ejs', { recipes });
   })
 );
 
-//Edit Route
+// Edit Route
 router.get(
   '/:id/edit',
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const recipe = await Listing.findById(id);
+    if (!recipe) {
+      req.flash('error', 'Recipe not found');
+      res.redirect('/recipes');
+    }
     res.render('listings/edit.ejs', { recipe });
   })
 );
@@ -71,6 +79,7 @@ router.put(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    req.flash('success', 'Recipe updated successfully');
     res.redirect(`/recipes/${id}`);
   })
 );
@@ -80,7 +89,8 @@ router.delete(
   '/:id',
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let deletedListing = await Listing.findByIdAndDelete(id);
+    await Listing.findByIdAndDelete(id);
+    req.flash('success', 'Recipe deleted');
     res.redirect('/recipes');
   })
 );
