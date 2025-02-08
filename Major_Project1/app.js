@@ -10,7 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const User = require('./models/user.js');
+const User = require('./models/User.js');
 
 const listingRouter = require('./routes/listing.js');
 const reviewRouter = require('./routes/review.js');
@@ -68,15 +68,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
-});
-
-app.get('/demouser', async (req, res) => {
-  let fakeUser = new User({
-    username: 'demouser',
-    email: 'demouser@example.com'
-  });
-  let registerUser = await User.register(fakeUser, 'helloDemo');
-  res.send(registerUser);
 });
 
 app.use('/recipes', listingRouter);
