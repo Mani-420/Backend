@@ -4,6 +4,7 @@ const wrapAsync = require('../utils/wrapAsync.js');
 const { listingSchema } = require('../schema.js');
 const ExpressError = require('../utils/ExpressError.js');
 const Listing = require('../models/listing.js');
+const { isLoggedIn } = require('../middlewares.js');
 
 // validate Listing Schema
 const validateListing = (req, res, next) => {
@@ -28,7 +29,7 @@ router.get(
 );
 
 //New Route
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('listings/new.ejs');
 });
 
@@ -36,6 +37,7 @@ router.get('/new', (req, res) => {
 router.post(
   '/',
   validateListing,
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const newRecipe = new Listing(req.body.listing);
     await newRecipe.save().catch((err) => console.log(err));
@@ -61,6 +63,7 @@ router.get(
 // Edit Route
 router.get(
   '/:id/edit',
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const recipe = await Listing.findById(id);
@@ -87,6 +90,7 @@ router.put(
 //Delete Route
 router.delete(
   '/:id',
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
