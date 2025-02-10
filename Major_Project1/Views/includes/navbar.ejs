@@ -11,9 +11,13 @@
           <a style="color: black !important;" class="nav-link" href="/recipes/new">Create New Recipe</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <a style="color: black !important;" class="nav-link" href="/signup">Sign Up</a>
-          <a style="color: black !important;" class="nav-link" href="/login">Login</a>
-          <a style="color: black !important;" class="nav-link" href="/logout">Log Out</a>
+          <% if(!currUser) { %>
+            <a style="color: black !important;" class="nav-link" href="/login">Login</a>
+            <a style="color: black !important;" class="nav-link" href="/signup">Sign Up</a>
+          <% } %>
+          <% if(currUser) { %>
+            <a style="color: black !important;" class="nav-link" href="/logout">Log Out</a>
+          <% } %>
         </div>
       </div>
     </div>
