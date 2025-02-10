@@ -12,10 +12,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User.js');
 
+// Routes -------------
 const listingRouter = require('./routes/listing.js');
 const reviewRouter = require('./routes/review.js');
 const userRouter = require('./routes/user.js');
 
+// Mongo Connection--------------
 const MONGO_URL = 'mongodb://127.0.0.1:27017/Recipe-blog';
 
 main()
