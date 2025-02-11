@@ -40,6 +40,7 @@ router.post(
   isLoggedIn,
   wrapAsync(async (req, res) => {
     const newRecipe = new Listing(req.body.listing);
+    newRecipe.owner = req.user._id;
     await newRecipe.save().catch((err) => console.log(err));
     req.flash('success', 'Recipe created successfully');
     res.redirect('/recipes');
@@ -51,7 +52,9 @@ router.get(
   '/:id',
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    const recipes = await Listing.findById(id).populate('reviews');
+    const recipes = await Listing.findById(id)
+      .populate('reviews')
+      .populate('owner');
     if (!recipes) {
       req.flash('error', 'Recipe not found');
       res.redirect('/recipes');
