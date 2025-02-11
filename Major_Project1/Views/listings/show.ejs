@@ -35,6 +35,8 @@
           <li><b>Recipe</b> <%= recipes.recipe %></li>
         </ul>
         <br />
+
+        <% if (currUser && currUser._id.equals(recipes.owner._id)) { %>
         <div class="buttons">
           <button
             style="
@@ -64,6 +66,7 @@
             </button>
           </form>
         </div>
+        <% } %>
       </div>
     </div>
     <hr />
