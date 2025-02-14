@@ -3,6 +3,8 @@ const router = express.Router();
 const wrapAsync = require('../utils/wrapAsync.js');
 // const Listing = require('../models/listing.js');
 const { isLoggedIn, isOwner, validateListing } = require('../middlewares.js');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const listingController = require('../controllers/listings.js');
 
