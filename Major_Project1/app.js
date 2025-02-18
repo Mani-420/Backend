@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const PORT = 8080;
 const ExpressError = require('./utils/ExpressError.js');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -18,7 +19,10 @@ const reviewRouter = require('./routes/review.js');
 const userRouter = require('./routes/user.js');
 
 // Mongo Connection--------------
-const MONGO_URL = 'mongodb://127.0.0.1:27017/Recipe-blog';
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/Recipe-blog';
+// const dbUrl = process.env.ATLASDB_URL;
+const dbUrl =
+  'mongodb+srv://abdulofficial3154:tQ02fLyahH9bWfvv@recipe.jyg2i.mongodb.net/?retryWrites=true&w=majority&appName=Recipe';
 
 main()
   .then(() => {
@@ -29,7 +33,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 
 app.set('view engine', 'ejs');
@@ -39,7 +43,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: 'secret'
+  },
+  touchAfter: 24 * 60 * 60 // 1 day
+});
+
+store.on('error', () => {
+  console.log('Error in Mongo Session');
+});
+
 const sessionOptions = {
+  store,
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
