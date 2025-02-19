@@ -10,11 +10,16 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.newRecipe = async (req, res) => {
-  const newRecipe = new Listing(req.body.listing);
-  newRecipe.owner = req.user._id;
-  await newRecipe.save().catch((err) => console.log(err));
-  req.flash('success', 'Recipe created successfully');
-  res.redirect('/recipes');
+  try {
+    const newRecipe = new Listing(req.body.listing);
+    newRecipe.owner = req.user._id;
+    await newRecipe.save();
+    req.flash('success', 'Recipe created successfully');
+    res.redirect('/recipes');
+  } catch (err) {
+    req.flash('error', 'Failed to create recipe. Please try again.');
+    res.redirect('/recipes/new');
+  }
 };
 
 module.exports.showRecipes = async (req, res) => {
