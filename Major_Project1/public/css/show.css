@@ -1,107 +1,113 @@
-.container{
-    justify-content: center;
-    justify-items: center;
+html,
+body {
+  height: 100%;
 }
 
-.buttons{
-    display: flex;
-    margin: 5px;
-    color: #f4f4f4;
+.container {
+  justify-content: center;
+  justify-items: center;
+}
+
+.buttons {
+  display: flex;
+  margin: 5px;
+  color: #f4f4f4;
 }
 
 .main {
-    font-family: Arial, sans-serif;
-    margin: 10px;
-    padding: 0;
-    background-color: #f9f9f9;
-    /* color: #333; */
-    line-height: 1.6;   
-    justify-content: center;
-    justify-items: center;
-    align-items: center; 
-    max-width: 50%;
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 0;
+  background-color: #f9f9f9;
+  /* color: #333; */
+  line-height: 1.6;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  max-width: 50%;
 }
 
 /* Container styling */
 body > ul {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    list-style: none;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  list-style: none;
 }
 
 /* Heading styling */
 h3 {
-    text-align: center;
-    color: #444;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 /* Recipe Image Styling */
 ul img {
-    display: block;
-    width: 100%;
-    max-height: 300px; /* Limit the height of the image */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  max-height: 300px; /* Limit the height of the image */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  object-fit: cover;
 }
 
 /* Recipe Details Styling */
 ul li {
-    margin: 10px 0;
-    padding: 10px;
-    background: #f4f4f4;
-    border-left: 4px solid #ffa726;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 10px;
+  background: #f4f4f4;
+  border-left: 4px solid #ffa726;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Button Styling */
 .buttons {
-    display: flex;
-    margin-top: 15px;
-    font-size: 1rem;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+  display: flex;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
 }
 
 /* Footer */
 .socials a {
-    text-decoration: none;
-    color: #222222;
-    font-size: 1.5rem;
+  text-decoration: none;
+  color: #222222;
+  font-size: 1.5rem;
 }
 
 .socials a:hover {
-    text-decoration: underline;    
+  text-decoration: underline;
 }
-.footer-info{
-    height: 2.5rem;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: space-between;
+.footer-info {
+  height: 2.5rem;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body > ul {
-        padding: 15px;
-        margin: 10px;
-    }
+  body > ul {
+    padding: 15px;
+    margin: 10px;
+  }
 
-    h3 {
-        font-size: 1.5rem;
-    }
+  h3 {
+    font-size: 1.5rem;
+  }
 
-    a, form button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
+  a,
+  form button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
 }

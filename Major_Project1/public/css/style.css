@@ -1,104 +1,104 @@
 /* General Reset */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 /* Main Content */
 .content {
-    flex: 1;  /* Push footer down */
-    padding: 2rem;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+  flex: 1; /* Push footer down */
+  padding: 2rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .intro h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
 }
 
 .intro p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-top: 0;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 0;
 }
 
 /* Button Section */
 section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .buttons {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #3498db;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    width: 100%;
-    max-width: 250px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+  max-width: 250px;
 }
 
 .buttons:hover {
-    background-color: #2980b9;
+  background-color: #2980b9;
 }
 
 /* Footer */
 .socials a {
-    text-decoration: none;
-    color: #222222;
-    font-size: 1.5rem;
+  text-decoration: none;
+  color: #222222;
+  font-size: 1.5rem;
 }
 
 .socials a:hover {
-    text-decoration: underline;    
+  text-decoration: underline;
 }
-.footer-info{
-    background-color: aliceblue;
-    display: flex;
-    margin: 0;
-    justify-content: space-between;
+.footer-info {
+  background-color: aliceblue;
+  display: flex;
+  margin: 0;
+  justify-content: space-between;
 }
-.extra{
-    height: 90%;
-    flex: 1;
+.extra {
+  height: 90%;
+  flex: 1;
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .logo {
-        font-size: 1.5rem;
-    }
+  .logo {
+    font-size: 1.5rem;
+  }
 
-    .intro h2 {
-        font-size: 1.5rem;
-    }
+  .intro h2 {
+    font-size: 1.5rem;
+  }
 
-    .intro p {
-        font-size: 1rem;
-    }
+  .intro p {
+    font-size: 1rem;
+  }
 
-    .buttons {
-        width: 80%;
-    }
+  .buttons {
+    width: 80%;
+  }
 }
