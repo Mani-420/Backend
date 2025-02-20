@@ -23,13 +23,7 @@
     <%- include('../includes/navbar.ejs') %>
     <h4>Add details for the new recipe:</h4>
     <div class="main">
-      <form
-        method="post"
-        action="/recipes"
-        novalidate
-        class="needs-validation"
-        enctype="multipart/form-data"
-      >
+      <form method="post" action="/recipes" novalidate class="needs-validation">
         <div class="title">
           <input
             name="listing[title]"
