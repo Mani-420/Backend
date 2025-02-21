@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User.js');
+require('dotenv').config();
 
 // Routes -------------
 const listingRouter = require('./routes/listing.js');
@@ -19,8 +20,7 @@ const reviewRouter = require('./routes/review.js');
 const userRouter = require('./routes/user.js');
 
 // Mongo Connection--------------
-const dbUrl =
-  'mongodb+srv://abdulofficial3154:tQ02fLyahH9bWfvv@recipe.jyg2i.mongodb.net/?retryWrites=true&w=majority&appName=Recipe';
+const dbUrl = process.env.MONGO_URI;
 
 main()
   .then(() => {
@@ -55,7 +55,7 @@ store.on('error', () => {
 
 const sessionOptions = {
   store,
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
