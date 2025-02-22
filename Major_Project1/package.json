@@ -5,9 +5,9 @@
   "name": "major_project1",
   "version": "1.0.0",
   "description": "Recipe Website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "author": "Abdul Rehman",
   "license": "ISC",
