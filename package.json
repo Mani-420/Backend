@@ -1,0 +1,28 @@
+{
+  "name": "01backend",
+  "version": "1.0.0",
+  "description": "A basic app to deploy",
+  "keywords": [
+    "node",
+    "backend"
+  ],
+  "homepage": "https://github.com/Mani-420/Backend#readme",
+  "bugs": {
+    "url": "https://github.com/Mani-420/Backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mani-420/Backend.git"
+  },
+  "license": "ISC",
+  "author": "Abdul Rehman",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
