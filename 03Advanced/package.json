@@ -1,0 +1,19 @@
+{
+  "name": "03advanced",
+  "version": "1.0.0",
+  "description": "A little advanced level backend",
+  "keywords": [
+    "js",
+    "backend"
+  ],
+  "license": "ISC",
+  "author": "Abdul Rehman",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
