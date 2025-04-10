@@ -4,6 +4,19 @@ import { User } from '../models/user.model.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 
+generateAccessAndRefreshTokens = async (userId) => {
+  try {
+    const user = await User.findById(userId);
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+  } catch (error) {
+    throw new ApiError(
+      500,
+      'Something went wring while generating access and refresh tokens'
+    );
+  }
+};
+
 const registerUser = asyncHandler(async (req, res) => {
   // get user details from the frontend
   // validations that name, username or email are not empty
@@ -44,9 +57,9 @@ const registerUser = asyncHandler(async (req, res) => {
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
-  // if (!avatar) {
-  //   throw new ApiError(400, 'Avatar file is required');
-  // }
+  if (!avatar) {
+    throw new ApiError(400, 'Avatar file is required');
+  }
 
   console.log('avatarLocalPath:', avatarLocalPath);
 
@@ -72,4 +85,33 @@ const registerUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, 'User created successfully', createdUser));
 });
 
-export { registerUser };
+const loginUser = asyncHandler(async (req, res) => {
+  // req.body -> data
+  // access username or email
+  // find the user
+  // password check
+  // access and refresh token will be generated if password is correct
+  // send cookie
+
+  const { email, username, password } = req.body;
+
+  if (!username || !email) {
+    throw new ApiError(400, 'Username or email is required');
+  }
+
+  const user = await User.findOne({
+    $or: [{ username }, { email }]
+  });
+
+  if (!user) {
+    throw new ApiError(404, 'User does not exist');
+  }
+
+  const isPasswordValid = await user.isPasswordCorrect(password);
+
+  if (!isPasswordValid) {
+    throw new ApiError(401, 'Invalid Credentials');
+  }
+});
+
+export { registerUser, loginUser };
